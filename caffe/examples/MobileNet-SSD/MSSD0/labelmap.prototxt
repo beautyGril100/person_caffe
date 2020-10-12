@@ -1,0 +1,20 @@
+item {
+  name: "none_of_the_above"
+  label: 0
+  display_name: "background"
+}
+item {
+  name: "shoe"
+  label: 1
+  display_name: "shoe"
+}
+item {
+  name: "wire"
+  label: 2
+  display_name: "wire"
+}
+item {
+  name: "sock"
+  label: 3
+  display_name: "sock"
+}
