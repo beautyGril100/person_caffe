@@ -1,0 +1,12 @@
+python object_detection/export_tflite_ssd_graph.py --pipeline_config_path=../../tf_lite/ssd_mobilenet_v1_coco/ssd_mobilenet_v1_coco_2018_01_28/pipeline.config --trained_checkpoint_prefix=../../tf_lite/ssd_mobilenet_v1_coco/ssd_mobilenet_v1_coco_2018_01_28/model.ckpt --output_directory=../../tf_lite/ssd_mobilenet_v1_coco/ssd_mobilenet_v1_coco_2018_01_28/hwzhu_tflite/ --add_postprocessing_op=true
+toco --graph_def_file=./hwzhu_tflite/tflite_graph.pb --output_file=./hwzhu_tflite/detect.tflite --input_shapes=1,300,300,3 --input_arrays=normalized_input_image_tensor --output_arrays='TFLite_Detection_PostProcess','TFLite_Detection_PostProcess:1','TFLite_Detection_PostProcess:2','TFLite_Detection_PostProcess:3' --inference_type=QUANTIZED_UINT8 --mean_values=128 --std_dev_values=128 --change_concat_input_ranges=false --allow_custom_ops --default_ranges_min=0 --default_ranges_max=6
+toco --graph_def_file=./hwzhu_tflite/tflite_graph.pb --output_file=./hwzhu_tflite/detect_float.tflite --input_shapes=1,300,300,3 --input_arrays=normalized_input_image_tensor --output_arrays='TFLite_Detection_PostProcess','TFLite_Detection_PostProcess:1','TFLite_Detection_PostProcess:2','TFLite_Detection_PostProcess:3' --inference_type=FLOAT --allow_custom_ops
+
+
+encode_background_as_zeros: False
+ssd_config.add_background_class: True
+add_background_class: True , config_box_predictor.use_dropout: False
+self._num_class_slots: 91
+
+python object_detection/export_tflite_ssd_graph.py --pipeline_config_path=../../tf_lite/ssd_mobilenet_v1_coco/ssd_mobilenet_v1_coco_2018_01_28/pipeline.config --trained_checkpoint_prefix=../../tf_lite/ssd_mobilenet_v1_coco/ssd_mobilenet_v1_coco_2018_01_28/model.ckpt --output_directory=../../tf_lite/ssd_mobilenet_v1_coco/ssd_mobilenet_v1_coco_2018_01_28/hwzhu_tflite/ --add_postprocessing_op=false
+
